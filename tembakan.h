@@ -11,3 +11,4 @@ void kontrolTembakan(tembakan* t); //mengecek pemecatan tombol, dan melakukan ak
 void puterTembakan(tembakan* t, int a); //memutar kemiringan tembakan ke kiri atau kanan
 void tembakTembakan(tembakan* t); //mengganti flag isTembak menjadi true
 void jedaTembakan(tembakan* t); //mengembalikkan flag isTembak menjadi flag
+void gambarTembakan(tembakan* t); //menggambar tembakan pada buffer
