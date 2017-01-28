@@ -17,7 +17,6 @@ void cekTabrakanObjek(int offset);   //cek apakah terdapat peluru yang berada se
 								     //jika iya kedua objek memiliki isTabrakan true
 void hancurObjek(objekTabrak* o);	 //hilangkan objek pesawat dari memori
 void jalanObjek();					 //ganti posisi seluruh objek sesuai kecepatan dan arah
-void jalanObjek(objekTabrak* o);	 //ganti posisi objek sesuai kecepatan dan arah
 void spawnObjek(char t, point p);	 //membuat objek baru(a=pesawat; b=peluru) pada posisi p
 //=============================================================================================================================================
 void gambarObjek();					 //menggambar seluruh objek dengan ke buffer, posisi objek berada di dalam gambar;
