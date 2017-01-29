@@ -145,6 +145,7 @@ void bufferDrawCircle(titik p, int radius, warna c){
     } 
     inline void plot4poin(titik p1, int x, int y, warna c)
     {
+        /*
         //Lingkaran kosong
         int a = p1.x+ x;
         int b = p1.x- x;
@@ -157,10 +158,10 @@ void bufferDrawCircle(titik p, int radius, warna c){
         bufferDrawDot(pa,c);
         bufferDrawDot(pb,c);
         bufferDrawDot(pc,c);
-        bufferDrawDot(pd,c); 
+        bufferDrawDot(pd,c); */
        // Lingkaran berisi
-       // bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y + y,c);
-       // bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y - y,c);
+        bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y + y,c);
+        bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y - y,c);
     }
 
     inline void plot8poin(titik p1, int x, int y, warna c)
