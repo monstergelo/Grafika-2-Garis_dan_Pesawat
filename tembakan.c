@@ -5,7 +5,7 @@
 
 const float rad = 3.14159265/180.0;
 
-tembakan prime;
+extern tembakan prime;
 //memutar kemiringan tembakan ke kiri atau kanan
 void puterTembakan(int a) {
 	prime.kemiringan += a;

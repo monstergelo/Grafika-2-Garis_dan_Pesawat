@@ -1,4 +1,5 @@
 #include "tabrakan.h" 
+#include "tembakan.h" 
 #include <math.h> 
 #include <stdlib.h>
 #include <time.h>
@@ -10,7 +11,7 @@
 
 int pesawatterakhir;
 int peluruterakhir;
-
+tembakan prime;
 extern objekTabrak pesawat[1];
 extern objekTabrak peluru[5];
 
@@ -89,7 +90,7 @@ void spawnObjek(char t, titik p){
 	
 		peluru[peluruterakhir].posisi = p;
 		peluru[peluruterakhir].kecepatan = 25;
-		peluru[peluruterakhir].arah = random2;
+		peluru[peluruterakhir].arah = 90 - prime.kemiringan;
 		peluru[peluruterakhir].isTabrakan = 0;
 		peluruterakhir++;
 		
