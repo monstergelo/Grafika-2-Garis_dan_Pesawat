@@ -3,6 +3,9 @@
 
 // deklarasi fungsi
 #include "gambar.h"
+#include <stdio.h>
+#include <math.h>
+
 
 //mengganti nilai pixel dengan posisi p pada buffer dengan warna c
 void bufferDrawDot(titik p, warna c){
@@ -180,10 +183,71 @@ void bufferDrawPlane(titik* p, warna c){
 	bufferDrawLine(p[i], p[0], c);
 }
 
-void bufferDrawCircle(titik p, warna c){
+   
 
+void bufferDrawCircle(titik p, int radius, warna c){
+    inline void bufferDrawHorizontalLine(int x1, int x2, int y, warna c)
+    {
+        int i; titik l;
+        for (i = x1; i < x2 ; i++){
+            l.x = i; l.y = y;
+            bufferDrawDot(l, c);
+        }
+    } 
+    inline void plot4poin(titik p1, int x, int y, warna c)
+    {
+        /*
+        //Lingkaran kosong
+        int a = p1.x+ x;
+        int b = p1.x- x;
+        int d = p1.y +y;
+        int e = p1.y -y;
+        titik pa = {a,d};
+        titik pb = {b,d};
+        titik pc = {a,e};
+        titik pd = {b,e};
+        bufferDrawDot(pa,c);
+        bufferDrawDot(pb,c);
+        bufferDrawDot(pc,c);
+        bufferDrawDot(pd,c); */
+
+       // Lingkaran berisi
+        bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y + y,c);
+        bufferDrawHorizontalLine(p1.x - x, p1.x + x, p1.y - y,c);
+    }
+
+    inline void plot8poin(titik p1, int x, int y, warna c)
+    {
+        plot4poin(p1, x, y, c);
+        plot4poin(p1, y, x, c);
+    }
+
+
+    int error = -radius;
+    int x = radius;
+    int y = 0;
+
+    while (x >= y)
+    {
+        plot8poin(p, x, y, c);
+
+        error += y;
+        y++;
+        error += y;
+
+        if (error >= 0)
+        {
+            error += -x;
+            x--;
+            error += -x;
+        }
+    }
 }
 
-int  dotDistance(titik p1, titik p2){
-    return 0;
+int dotDistance(titik p1, titik p2){
+    double hasil;
+    hasil = sqrt(((p2.x-p1.x)*(p2.x-p1.x))+((p2.y-p1.y)*(p2.y-p1.y)));
+    return hasil;
 }
+
+
