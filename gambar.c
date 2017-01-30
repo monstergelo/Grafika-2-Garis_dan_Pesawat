@@ -152,57 +152,79 @@ void loadBuffer(){
 }
 
 void bufferDrawLine(titik p0, titik p1, warna c){
-	int dx, dy, x, y, x_end, p, c1, c2;
+	int dx, dy, x, y, x_end, y_end, px, py, c1, c2;
 	titik p2;
 	
 	dx = abs(p0.x - p1.x);
 	dy = abs(p0.y - p1.y);
 	
-	p  = 2 * dx - dy;
+	px = 2 * dx - dy;
+	py = 2 * dy - dx;
 	c1 = 2 * dy;
 	c2 = 2 * (dy-dx);
 	
-	if (p0.x > p1.x) {
-		x = p1.x;
-		y = p1.y;
-		x_end = p0.x;
-	} else {
-		x = p0.x;
-		y = p0.y;
-		x_end = p1.x;
-	}
-	
-	//setpixel(x, y)
-	p2.x = x;
-	p2.y = y;
-	bufferDrawDot(p2, c);
-	
-	while (x < x_end) {
-		if (dy <= dx) {
-			x++;
-		
-			if (p < 0) {
-				p += c1;
-			} else {
-				y++;
-				p += c2;
-			}
+	if (dy <= dx) {
+		if (p0.x > p1.x) {
+			x = p1.x;
+			y = p1.y;
+			x_end = p0.x;
 		} else {
-			y++;
-		
-			if (p < 0) {
-				p += c1;
-			} else {
-				x++;
-				p += c2;
-			}
+			x = p0.x;
+			y = p0.y;
+			x_end = p1.x;
 		}
 		
-		
-		//setpixel(x,y)
+		//setpixel(x, y)
 		p2.x = x;
 		p2.y = y;
 		bufferDrawDot(p2, c);
+			
+		while (x < x_end) {
+			x++;
+		
+			if (px < 0) {
+				px += c1;
+			} else {
+				y++;
+				px += c2;
+			}
+			
+			//setpixel(x,y)
+			p2.x = x;
+			p2.y = y;
+			bufferDrawDot(p2, c);
+		}
+	} else {
+		if (p0.y > p1.y) {
+			x = p1.x;
+			y = p1.y;
+			y_end = p0.y;
+		} else {
+			x = p0.x;
+			y = p0.y;
+			y_end = p1.y;
+		}
+		
+		//setpixel(x, y)
+		p2.x = x;
+		p2.y = y;
+		bufferDrawDot(p2, c);
+		
+		while (y < y_end) {
+			y++;
+		
+			if (py < 0) {
+				py += c1;
+			} else {
+				x++;
+				py += c2;
+			}
+			
+			//setpixel(x,y)
+			p2.x = x;
+			p2.y = y;
+			bufferDrawDot(p2, c);
+		}
 	}
 }
 
