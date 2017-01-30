@@ -23,13 +23,14 @@ int fd; 				//something-something keylogger
 struct input_event ev;	//something-something keylogger
 ssize_t n;
 int user_input = -99;
+int keypress = 0;
 titik p0 = {400,100};
 titik p1 = {600,600};
 titik p2 = {300,650};
 titik p3 = {500,650};
-titik p8 = {400, 400};
+titik p8 = {600, 650};
 titik p9 = {0,0};
-titik p10 = {1000,0};
+titik p10 = {760,2};
 titik p11 = {0,600};
 titik p12 = {1000,700};
 
@@ -62,29 +63,22 @@ int main(){
 
 	spawnObjek('a',p0);
 
-	while(1){
-		refreshBuffer(pl0,pl1);
-		gambarObjek();
-		gambarTembakan();
-		// bufferDrawLine(p8, p9, c);
-		// bufferDrawLine(p8, p10, c);
-		// bufferDrawLine(p8, p11, c);
-		// bufferDrawLine(p8, p12, c);
-		puterTembakan(2);
-		loadBuffer();
-		usleep(100000);
-	}	
+
+	refreshBuffer(pl0,pl1);
+	gambarObjek();
+	gambarTembakan();
+	loadBuffer();
+
 
 //**game-loop***********************************************************************************
-	// pthread_create(&thread0, NULL, preUpdate, NULL);
-	// while(1)
-	// {
-	// 	//preUpdate();
-	// 	updatePosisi();
-	// 	postUpdate();	
-	// 	usleep(17);
-	// 	puterTembakan(10);
-	// }
+	pthread_create(&thread0, NULL, preUpdate, NULL);
+	while(1)
+	{
+		//preUpdate();
+		updatePosisi();
+		postUpdate();	
+		usleep(17);
+	}
 
 //**garbaging***********************************************************************************
 	//pthread_join(thread0, NULL);
@@ -128,6 +122,11 @@ void *preUpdate(){
 	                    break;
 
 	            }
+	            keypress = 1;
+	        }
+
+	        if(ev.value == 0){
+	        	keypress = 0;
 	        }
 	    }
 	}
@@ -136,15 +135,15 @@ void *preUpdate(){
 void updatePosisi(){
 	if(user_input == 0){
 		spawnObjek('b',p1);
-		user_input = -99;
+		if(keypress == 0) user_input = -99;
 	}
 	else if(user_input == 1){
 		puterTembakan(user_input);
-		user_input = -99;
+		if(keypress == 0) user_input = -99;
 	}
 	else if(user_input == -1){
 		puterTembakan(user_input);
-		user_input = -99;
+		if(keypress == 0) user_input = -99;
 	}
 
 	refreshBuffer(pl0,pl1);

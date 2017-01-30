@@ -64,17 +64,16 @@ void gambarTembakan() {
 	}
 
 	int theta = (prime.kemiringan);
-	int range = 500;
+	int range = 300;
 
 	titik p0 = {600, 650};
-	titik p1 = {600, 550-range};
+	titik p1 = {600, 650-range};
 
 	int xx = p1.x;
 	int yy = p1.y;
 
-	p1.x = ((cos(theta*rad) * (xx)) - (sin(theta*rad) * (yy))) + p0.x;
-	p1.y = ((sin(theta*rad) * (xx)) + (cos(theta*rad) * (yy))) + p0.y;
+	p1.x = ((cos(theta*rad) * (xx-p0.x)) - (sin(theta*rad) * (yy-p0.y))) + p0.x;
+	p1.y = ((sin(theta*rad) * (xx-p0.x)) + (cos(theta*rad) * (yy-p0.y))) + p0.y;
 
-	printf("%d [%d,%d]\n", theta, p1.x, p1.y);
-	bufferDrawLine(p1, p0, x);
+	bufferDrawLine(p0, p1, x);
 } 

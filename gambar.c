@@ -229,7 +229,7 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 		bufferDrawDot(p2, c);
 		
 		int dx;
-		if(p2.x > p3.x)
+		if(p2.x >= p3.x)
 		{
 			dx = -1;
 		}
