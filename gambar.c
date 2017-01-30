@@ -152,20 +152,31 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 	bufferDrawDot(p2, c);
 	
 	while (x < x_end) {
-		x++;
+		if (dy <= dx) {
+			x++;
 		
-		if (p < 0) {
-			p += c1;
+			if (p < 0) {
+				p += c1;
+			} else {
+				y++;
+				p += c2;
+			}
 		} else {
 			y++;
-			p += c2;
+		
+			if (p < 0) {
+				p += c1;
+			} else {
+				x++;
+				p += c2;
+			}
 		}
+		
 		
 		//setpixel(x,y)
 		p2.x = x;
 		p2.y = y;
 		bufferDrawDot(p2, c);
-		
 	}
 }
 
