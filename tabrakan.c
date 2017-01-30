@@ -4,6 +4,8 @@
 //cek apakah terdapat peluru yang berada sejauh offset dari pesawat
 //jika iya kedua objek memiliki isTabrakan true
 
+#define PI 3.14159265
+
 int pesawatterakhir;
 int peluruterakhir;
 
@@ -43,20 +45,27 @@ void jalanObjek(){
 	int qq = pesawatterakhir;
 	int ww = peluruterakhir;
 	
-	
+	double val = PI / 180.0;
 	
 	for (int i =0; i<qq ; i++){
 		
 		if(pesawat[i].isTabrakan==0){
-		pesawat[i].posisi.x = pesawat[i].posisi.x-pesawat[i].kecepatan;
+			
+			if(pesawat[i].arah<=180){
+				pesawat[i].posisi.x = pesawat[i].posisi.x+(cos(pesawat[i].arah*val)*pesawat[i].kecepatan);
+				pesawat[i].posisi.y = pesawat[i].posisi.y+(sin(pesawat[i].arah*val)*pesawat[i].kecepatan);
+			}else{
+				pesawat[i].posisi.x = pesawat[i].posisi.x+(cos(pesawat[i].arah*val)*pesawat[i].kecepatan);
+				pesawat[i].posisi.y = pesawat[i].posisi.y-(sin(pesawat[i].arah*val)*pesawat[i].kecepatan);
+			}
 		}
 	} 
 	
 	
 	for (int i =0; i<ww ; i++){
 		if(peluru[i].isTabrakan==0){
-		peluru[i].posisi.x = peluru[i].posisi.x+(cos(peluru[i].arah)*peluru[i].kecepatan);
-		peluru[i].posisi.y = peluru[i].posisi.y+(sin(peluru[i].arah)*peluru[i].kecepatan);
+		peluru[i].posisi.x = peluru[i].posisi.x+(cos(peluru[i].arah*val)*peluru[i].kecepatan);
+		peluru[i].posisi.y = peluru[i].posisi.y-(sin(peluru[i].arah*val)*peluru[i].kecepatan);
 		}
 	}
 }
@@ -66,20 +75,30 @@ void jalanObjek(){
 void spawnObjek(char t, titik p){
 	
 	if (t=='a'){
+		
+	
+	int random1 = rand() % 360;
+	
+		
 		pesawat[pesawatterakhir].posisi = p;
-		pesawat[pesawatterakhir].arah = 180;
+		pesawat[pesawatterakhir].arah = random1;
 		pesawat[pesawatterakhir].kecepatan = 10;
 		pesawat[pesawatterakhir].isTabrakan = 0;
 		pesawatterakhir++;
 		
+		printf("Angka random pesawat adalah %d \n",random1 );
 	}else if (t=='b'){
-		
-		int random = rand();
-		
+	
+	int random2 = rand() % 180;
+	
 		peluru[peluruterakhir].posisi = p;
 		peluru[peluruterakhir].kecepatan = 50;
-		peluru[peluruterakhir].arah = random % 180;
+		peluru[peluruterakhir].arah = random2;
 		peluru[peluruterakhir].isTabrakan = 0;
 		peluruterakhir++;
+		
+		printf("Angka random peluru adalah %d \n",random2 );
 	}
+	
+	
 }
