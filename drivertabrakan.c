@@ -19,8 +19,8 @@ void gambar(int x , int y){
 
 
 
-	objekTabrak pesawat[100];
-	objekTabrak peluru[100];
+	objekTabrak pesawat[1];
+	objekTabrak peluru[5];
 	
 
 int main(){
