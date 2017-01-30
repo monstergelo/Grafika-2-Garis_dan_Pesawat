@@ -126,11 +126,58 @@ void loadBuffer(){
 }
 
 void bufferDrawLine(titik p0, titik p1, warna c){
-
+	int dx, dy, x, y, x_end, p, c1, c2;
+	titik p2;
+	
+	dx = abs(p0.x - p1.x);
+	dy = abs(p0.y - p1.y);
+	
+	p = 2 * dx - dy;
+	c1 = 2 * dy;
+	c2 = 2 * (dy-dx);
+	
+	if (p0.x > p1.x) {
+		x = p1.x;
+		y = p1.y;
+		x_end = p0.x;
+	} else {
+		x = p0.x;
+		y = p0.y;
+		x_end = p1.x;
+	}
+	
+	//setpixel(x, y)
+	p2.x = x;
+	p2.y = y;
+	bufferDrawDot(p2, c);
+	
+	while (x < x_end) {
+		x++;
+		
+		if (p < 0) {
+			p += c1;
+		} else {
+			y++;
+			p += c2;
+		}
+		
+		//setpixel(x,y)
+		p2.x = x;
+		p2.y = y;
+		bufferDrawDot(p2, c);
+		
+	}
 }
 
 void bufferDrawPlane(titik* p, warna c){
-
+	int i;
+	int size = (sizeof(p)-1)/sizeof(titik); //ini -1 karena ntar yg 
+											//terakhir barengin ama 0 di luar loop
+	for (i = 0; i < size; i++) {
+		bufferDrawLine(p[i], p[i+1], c);
+	}
+	
+	bufferDrawLine(p[i], p[0], c);
 }
 
 void bufferDrawCircle(titik p, warna c){
