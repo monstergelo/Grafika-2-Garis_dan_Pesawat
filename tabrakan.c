@@ -1,6 +1,7 @@
 #include "tabrakan.h" 
 #include <math.h> 
 #include <stdlib.h>
+#include <time.h>
 
 //cek apakah terdapat peluru yang berada sejauh offset dari pesawat
 //jika iya kedua objek memiliki isTabrakan true
@@ -8,8 +9,8 @@
 int pesawatterakhir;
 int peluruterakhir;
 
-extern objekTabrak pesawat[100];
-extern objekTabrak peluru[100];
+extern objekTabrak pesawat[1];
+extern objekTabrak peluru[5];
 
 void cekTabrakanObjek(int offset){
 	int qq = pesawatterakhir;
@@ -68,17 +69,17 @@ void spawnObjek(char t, titik p){
 	
 	if (t=='a'){
 		pesawat[pesawatterakhir].posisi = p;
-		pesawat[pesawatterakhir].arah = 180;
-		pesawat[pesawatterakhir].kecepatan = 10;
+		pesawat[pesawatterakhir].arah = 0;
+		pesawat[pesawatterakhir].kecepatan = 1;
 		pesawat[pesawatterakhir].isTabrakan = 0;
 		pesawatterakhir++;
 		
 	}else if (t=='b'){
-		
+		srand((unsigned)time(NULL));
 		int random = rand();
 		
 		peluru[peluruterakhir].posisi = p;
-		peluru[peluruterakhir].kecepatan = 50;
+		peluru[peluruterakhir].kecepatan = 2;
 		peluru[peluruterakhir].arah = random % 180;
 		peluru[peluruterakhir].isTabrakan = 0;
 		peluruterakhir++;
@@ -185,4 +186,3 @@ void gambarObjek() {
 		}
 	}
 }
->>>>>>> Verisky135-master
