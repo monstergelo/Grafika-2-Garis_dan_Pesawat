@@ -1,9 +1,14 @@
 #include "tembakan.h"
 #include <time.h>
+#include <math.h> 
+#include <stdio.h>
 
+const float rad = 3.14159265/180.0;
+
+tembakan prime;
 //memutar kemiringan tembakan ke kiri atau kanan
 void puterTembakan(int a) {
-	
+	prime.kemiringan += a;
 }
 
 //mengganti flag isTembak menjadi true dan mengganti jedaTembak
@@ -48,14 +53,28 @@ int cekJedaTembakan() {
 
 //menggambar tembakan pada buffer, posisi objek berada di dalam gambar
 void gambarTembakan() {
-	
+	warna x = {100,99,0,98};
+
 	for (int i = 600; i < 950; i++) {
 		for (int j = 550; j < 650; j++) {
-			titik e = {j, i};
-			warna x = {100,99,0,98};	
+			titik e = {j, i};	
 		
 			bufferDrawDot(e, x);	
 		}
 	}
-	
+
+	int theta = (prime.kemiringan);
+	int range = 500;
+
+	titik p0 = {600, 650};
+	titik p1 = {600, 550-range};
+
+	int xx = p1.x;
+	int yy = p1.y;
+
+	p1.x = ((cos(theta*rad) * (xx)) - (sin(theta*rad) * (yy))) + p0.x;
+	p1.y = ((sin(theta*rad) * (xx)) + (cos(theta*rad) * (yy))) + p0.y;
+
+	printf("%d [%d,%d]\n", theta, p1.x, p1.y);
+	bufferDrawLine(p1, p0, x);
 } 

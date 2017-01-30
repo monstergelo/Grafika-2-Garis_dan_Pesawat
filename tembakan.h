@@ -4,10 +4,10 @@ typedef struct{
 	int kemiringan; //kemiringan moncong tembakan, kemiringan peluru yang keluar
 	int jedaTembak; //waktu terakhir menembak
 	int isTembak;   //flag untuk tahu apakah tombol tembak ditekan
-	point posisi;   //posisi tembakan, titik tengah objek
+	titik posisi;   //posisi tembakan, titik tengah objek
 }tembakan;
 
-tembakan prime;
+extern tembakan prime;
 
 void puterTembakan(int a); //memutar kemiringan tembakan ke kiri atau kanan
 void tembakTembakan(); //mengganti flag isTembak menjadi true dan mengganti jedaTembak
