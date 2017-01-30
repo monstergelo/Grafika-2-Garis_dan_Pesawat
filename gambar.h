@@ -16,6 +16,9 @@ unsigned char buffer_a[GLOBAL_LAYAR_X][GLOBAL_LAYAR_Y];
 // posisi c pada matriks framebuffer
 void bufferDrawDot(titik p, warna c);
 
+//memasukka warna pixel pada driver
+void DrawDot(titik p, warna c);
+
 // Melakukan assign warna default ke matriks 
 // buffer (bukan matriks framebuffer) berupa
 // segi empat yang dibentuk oleh dua titik p0 dan p1
@@ -28,7 +31,7 @@ void loadBuffer();
 
 //================================================
 void bufferDrawLine(titik p0, titik p1, warna c);	//mmengganti nilai pixel sehingga tergambar garis dari p0 ke p1
-void bufferDrawPlane(titik* p, warna c);			//membuat bidang yang menyambungkan titik p[0] ke p[1], p[1] ke p[2], ...., p[n] ke p[0]
+void bufferDrawPlane(titik* p, warna c, int sisi);			//membuat bidang yang menyambungkan titik p[0] ke p[1], p[1] ke p[2], ...., p[n] ke p[0]
 //================================================
 void bufferDrawCircle(titik p, int radius, warna c);	//membuat lingkaran dengan p sebagai pusat
 int  dotDistance(titik p1, titik p2);		//mengembalikan jarak antara p1 dan p2

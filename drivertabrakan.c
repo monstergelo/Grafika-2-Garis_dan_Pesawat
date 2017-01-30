@@ -49,9 +49,9 @@ int main(){
 	loadBuffer();
 	
 	gambar(pesawat[0].posisi.x,pesawat[0].posisi.y);
-	usleep(30000);
+	usleep(300000);
 	gambar(peluru[0].posisi.x,peluru[0].posisi.y);
-	
+	usleep(300000);
 	cekTabrakanObjek(300);
 	jalanObjek();
 	
