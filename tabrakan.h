@@ -25,3 +25,4 @@ void spawnObjek(char t, titik p);	 //membuat objek baru(a=pesawat; b=peluru) pad
 //=============================================================================================================================================
 void gambarObjek();					 //menggambar seluruh objek dengan ke buffer, posisi objek berada di dalam gambar;
 void gambarHancur(titik p);			 //menggambar animasi hancur pada titik p;
+

@@ -185,3 +185,4 @@ void gambarObjek() {
 		}
 	}
 }
+>>>>>>> Verisky135-master
