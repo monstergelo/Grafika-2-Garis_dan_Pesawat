@@ -126,7 +126,7 @@ void loadBuffer(){
 }
 
 void bufferDrawLine(titik p0, titik p1, warna c){
-	int dx, dy, x, y, x_end, y_end, px, py, c1, c2;
+	int dx, dy, x, y, x_end, y_end, px, py, cx1, cx2, cy1, cy2;
 	titik p2;
 	
 	dx = abs(p0.x - p1.x);
@@ -134,8 +134,10 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 	
 	px = 2 * dx - dy;
 	py = 2 * dy - dx;
-	c1 = 2 * dy;
-	c2 = 2 * (dy-dx);
+	cx1 = 2 * dy;
+	cx2 = 2 * (dy-dx);
+	cy1 = 2 * dx;
+	cy2 = 2 * (dx-dy);
 	
 	if (dy <= dx) {
 		if (p0.x > p1.x) {
@@ -157,10 +159,10 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 			x++;
 		
 			if (px < 0) {
-				px += c1;
+				px += cx1;
 			} else {
 				y++;
-				px += c2;
+				px += cx2;
 			}
 			
 			//setpixel(x,y)
@@ -188,10 +190,10 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 			y++;
 		
 			if (py < 0) {
-				py += c1;
+				py += cy1;
 			} else {
 				x++;
-				py += c2;
+				py += cy2;
 			}
 			
 			//setpixel(x,y)
