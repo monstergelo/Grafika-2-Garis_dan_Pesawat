@@ -18,6 +18,7 @@ void gambarHancur(titik p) {
 		bufferDrawCircle(p, 20-2*i, c);
 	}
 	/* Use this one for bigger explosion
+	 * 
 	for (i=0;i<10;i++) {
 		usleep(50000-(i*5000));
 		warna c = {255, 10+20*i, 0, 255};
@@ -34,13 +35,19 @@ void gambarHancur(titik p) {
 void gambarObjek() {
 	int i_pesawat, i_peluru, i, j;
 	
+	// Gambar pesawat
 	for(i_pesawat = 0; i_pesawat < 1; i_pesawat++) {
 		titik d = pesawat[i_pesawat].posisi;
 		titik e = {d.x + 20, d.y+10};
+		
+		
+		// Kepala pesawat
 		for (i=0; i<10; i++) {
 			warna c = {235+i*2, 235+i*2, 235+i*2, 255};
 			bufferDrawCircle(e, 10-1*i, c);
 		}
+		
+		// Sayap kiri
 		for(i = 0; i < 15; i++) {
 			for(j = 0; j < 25; j++){
 				titik m = {d.x + i-5, d.y + j-10};
@@ -48,6 +55,8 @@ void gambarObjek() {
 				bufferDrawDot(m, x);
 			}
 		}
+		
+		// Body
 		for(i = 0; i < 50; i++) {
 			for(j = 0; j < 21; j++){
 				titik m = {d.x + i-27, d.y + j};
@@ -55,6 +64,8 @@ void gambarObjek() {
 				bufferDrawDot(m, x);
 			}
 		}
+		
+		// Sayap kanan
 		for(i = 0; i < 15; i++) {
 			for(j = 0; j < 25; j++){
 				titik m = {d.x + i-5, d.y + j+ 10};
@@ -62,6 +73,8 @@ void gambarObjek() {
 				bufferDrawDot(m, x);
 			}
 		}
+		
+		// Ekor
 		for(i = 0; i < 10; i++) {
 			for(j = 0; j < 28; j++){
 				titik m = {d.x + i-35, d.y + j - 7};
@@ -71,6 +84,8 @@ void gambarObjek() {
 		}
 	}
 	
+	
+	// Gambar peluru
 	for(i_peluru = 0; i_peluru < 1; i_peluru++) {
 		titik d = peluru[i_peluru].posisi;
 		for (i=0; i<5; i++) {
