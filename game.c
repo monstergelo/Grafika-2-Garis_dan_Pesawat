@@ -136,8 +136,9 @@ void *preUpdate(){
 }
 
 void updatePosisi(){
+	//CEK INPUT
 	if(user_input == 0){
-		spawnObjek('b',p1);
+		tembakTembakan();
 		if(keypress == 0) user_input = -99;
 	}
 	else if(user_input == 1){
@@ -147,6 +148,12 @@ void updatePosisi(){
 	else if(user_input == -1){
 		puterTembakan(user_input);
 		if(keypress == 0) user_input = -99;
+	}
+
+	//CEK FLAG
+	if(prime.isTembak){
+		spawnObjek('b',p1);
+		sudahTembak();
 	}
 
 	refreshBuffer(pl0,pl1);
@@ -165,7 +172,7 @@ void postUpdate(){
 		}
 	}
 
-	for(int i=0; i<5; i++){
+	for(int i=0; i<99; i++){
 		if(peluru[i].isTabrakan == 1){
 			peluru[i].isTabrakan = -1;
 		}

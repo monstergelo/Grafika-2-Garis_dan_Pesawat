@@ -206,7 +206,7 @@ void gambarObjek() {
 	
 	
 	// Gambar peluru
-	for(i_peluru = 0; i_peluru < 1; i_peluru++) {
+	for(i_peluru = 0; i_peluru < 99; i_peluru++) {
 		if(peluru[i_peluru].isTabrakan != -1){
 			/*kepala peluru*/
 			titik d = peluru[i_peluru].posisi;

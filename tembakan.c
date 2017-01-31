@@ -13,15 +13,15 @@ void puterTembakan(int a) {
 
 //mengganti flag isTembak menjadi true dan mengganti jedaTembak
 void tembakTembakan() {
-	
-	prime.isTembak = 1;
-	
-	// get the current time
-	time_t seconds;
-	seconds = time(NULL);
-	
-	prime.jedaTembak = seconds;
-
+	if(cekJedaTembakan() == 1){
+		prime.isTembak = 1;
+		
+		// get the current time
+		time_t seconds;
+		seconds = time(NULL);
+		
+		prime.jedaTembak = seconds;
+	}
 } 
 
 //mengganti flag isTembak menjadi false;
