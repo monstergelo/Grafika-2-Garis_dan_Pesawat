@@ -14,7 +14,7 @@ extern int pesawatterakhir;
 extern int peluruterakhir;
 
 extern objekTabrak pesawat[1];
-extern objekTabrak peluru[5];
+extern objekTabrak peluru[100];
 
 
 void cekTabrakanObjek(int offset);   //cek apakah terdapat peluru yang berada sejauh offset dari pesawat, 

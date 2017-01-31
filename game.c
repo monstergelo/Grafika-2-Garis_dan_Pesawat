@@ -15,7 +15,9 @@ void updatePosisi();	//(1)ubah posisi. (2)spawnObjek, (3)drawBuffer
 void postUpdate();	 	//(1)cek kolisi, (2)loadbuffer ke layar
 
 objekTabrak pesawat[1];
-objekTabrak peluru[5];
+objekTabrak peluru[100];
+int pesawatterakhir;
+int peluruterakhir;
 titik pl0 = {0,0};
 titik pl1 = {1366,700};
 pthread_t thread0; 		//thread input capture
@@ -37,7 +39,7 @@ titik p12 = {1000,700};
 int main(){
 //**setup-pendengar-keyboard********************************************************************
 	// Input keyboard device file
-    const char *dev = "/dev/input/by-path/pci-0000:00:14.0-usb-0:1:1.0-event-kbd";
+    const char *dev = "/dev/input/event3";
     
     // Open device for reference
     fd = open(dev, O_RDONLY);
@@ -106,6 +108,7 @@ void *preUpdate(){
 	                case 57:
 	                    // Space trigger
 	                    user_input = 0;
+	                    printf("%d\n", peluruterakhir);
 	                    break;
 
 	                case 105:

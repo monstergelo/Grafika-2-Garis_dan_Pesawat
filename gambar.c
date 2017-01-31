@@ -9,7 +9,7 @@
 
 //mengganti nilai pixel dengan posisi p pada buffer dengan warna c
 void DrawDot(titik p, warna c){
-    if((p.x < 1) || (p.x > GLOBAL_LAYAR_X) || (p.y < 1) || (p.y > GLOBAL_LAYAR_Y)){
+    if((p.x < 1) || (p.x >= GLOBAL_LAYAR_X) || (p.y < 1) || (p.y >= GLOBAL_LAYAR_Y)){
 		return ;
 	}
 
@@ -32,26 +32,14 @@ void DrawDot(titik p, warna c){
 }
 
 void bufferDrawDot(titik p, warna c){
-    if((p.x < 1) || (p.x > GLOBAL_LAYAR_X) || (p.y < 1) || (p.y > GLOBAL_LAYAR_Y)){
+    if((p.x < 1) || (p.x >= GLOBAL_LAYAR_X) || (p.y < 1) || (p.y >= GLOBAL_LAYAR_Y)){
 		return ;
 	}
 
-    // long int position = (p.x + global_vinfo.xoffset) * (global_vinfo.bits_per_pixel / 8) + 
-    //    (p.y + global_vinfo.yoffset) * global_finfo.line_length;
-
-    // if(global_vinfo.bits_per_pixel == 32){
     buffer_b[p.x][p.y] = c.b;
     buffer_g[p.x][p.y] = c.g;
     buffer_r[p.x][p.y] = c.r;
     buffer_a[p.x][p.y] = c.a;
-    // }else{
-    //     // assume 16 bit color
-    //     int b = c.b;
-    //     int g = c.g;
-    //     int r = c.r;
-    //     unsigned short int t = r<<11 | g << 5 | b;
-    //     *((unsigned short int*)(global_fbp + position)) = t;
-    // }
 }
 
 //mengganti nilai seluruh pixel buffer menjadi background color untuk
@@ -194,10 +182,10 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 			dy = 1;
 		}
 			
-		while (x < x_end) {
+		while (x-1 < x_end) {
 			x++;
 		
-			if (px < 0) {
+			if (px <= 0) {
 				px += cx1;
 			} else {
 				y += dy;
@@ -211,7 +199,7 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 			bufferDrawDot(p2, c);
 		}
 	} else {
-		if (p0.y > p1.y) {
+		if (p0.y >= p1.y) {
 			x = p1.x;
 			y = p1.y;
 			y_end = p0.y;
@@ -238,10 +226,10 @@ void bufferDrawLine(titik p0, titik p1, warna c){
 			dx = 1;
 		}
 
-		while (y < y_end) {
+		while (y-1 < y_end) {
 			y++;
 		
-			if (py < 0) {
+			if (py <= 0) {
 				py += cy1;
 			} else {
 				x += dx;
@@ -261,9 +249,6 @@ void bufferDrawPlane(titik* p, warna c, int sisi){
 
 	for (i = 0; i < sisi-1; i++) {
 		bufferDrawLine(p[i], p[i+1], c);
-		c.r += 30;
-        c.g += 30;
-        c.b += 30;
 	}
 	
 
